@@ -90,26 +90,28 @@ while running:
                 ]
             # Check if the Submit button was clicked
             if submit_button.collidepoint(mouse_pos):
-                if d.check(selected_string.lower()):
-                    correct = True
-                    score += 1
-                    # Load a new random word and scramble it
-                    random_word = r.get_random_word()
-                    scrambled_word = ''.join(random.sample(random_word, len(random_word)))
-                    # Reset the selected string
-                    selected_string = ""
-                    # Reset the correct flag
-                    correct = False
-                    # Reset the buttons
-                    buttons = [
-                        pygame.Rect(button_start_x + (button_size + button_margin) * i, button_start_y, button_size, button_size)
-                        for i in range(len(scrambled_word))
-                    ]
-                else:
-                    correct = False
-                    # Reset the selected string
-                    selected_string = ""
-
+                try:
+                    if d.check(selected_string.lower()):
+                        correct = True
+                        score += 1
+                        # Load a new random word and scramble it
+                        random_word = r.get_random_word()
+                        scrambled_word = ''.join(random.sample(random_word, len(random_word)))
+                        # Reset the selected string
+                        selected_string = ""
+                        # Reset the correct flag
+                        correct = False
+                        # Reset the buttons
+                        buttons = [
+                            pygame.Rect(button_start_x + (button_size + button_margin) * i, button_start_y, button_size, button_size)
+                            for i in range(len(scrambled_word))
+                        ]
+                    else:
+                        correct = False
+                        # Reset the selected string
+                        selected_string = ""
+                except:
+                    print('string is empty')
     # Clear the screen
     screen.fill(BACKGROUND_COLOR)
 
